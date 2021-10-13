@@ -119,8 +119,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
       print('Auth Exception is ${authException.message}');
     };
 //
-    final PhoneCodeSent codeSent =
-        (String verificationId) {
+    final PhoneCodeSent codeSent = (String verificationId) {
       print('verification id is $verificationId');
       verId = verificationId;
     } as PhoneCodeSent;
@@ -132,7 +131,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
     try {
       await _auth.verifyPhoneNumber(
           phoneNumber: '${widget.phoneNumber}',
-          timeout: const Duration(seconds: 100),
+          timeout: const Duration(seconds: 60),
           verificationCompleted: verificationCompleted,
           verificationFailed: verificationFailed,
           codeSent: codeSent,
@@ -223,57 +222,65 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       keyboardType: TextInputType.number,
                       onCompleted: (v) async {
                         CircularProgress().circularProgress(context);
-                        try {
-                          setState(() {
-                            hasError = false;
-                          });
-                          await _auth
-                              .signInWithCredential(
-                                  PhoneAuthProvider.credential(
-                                      verificationId: verId,
-                                      smsCode: currentText))
-                              .then((value) async {
-                            if (value.user != null) {
-                              searchUser(widget.phoneNumber)
-                                  .then((value) async {
-                                if (previousUser) {
-                                  loginData =
-                                      await SharedPreferences.getInstance();
-                                  loginData.setBool('login', false);
-                                  loginData.setString('userId', userContact);
-                                  Provider.of<ProductManager>(context,
-                                          listen: false)
-                                      .addUser(
-                                          userName, userContact, userAddress, customerTotalOrder);
-                                  Navigator.pop(context);
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Products(),
-                                      ));
-                                } else {
-                                  Navigator.pop(context);
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            UserNameAndAddress(
-                                                widget.phoneNumber),
-                                      ));
-                                }
-                              });
-                            }
-                          });
-                        } catch (e) {
-                          print('Getting error, catch called');
-                          Navigator.pop(context);
-                          errorController!.add(ErrorAnimationType
-                              .shake); // Triggering error shake animation
-                          setState(() {
-                            hasError = true;
-                          });
-                        }
-                      },
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  UserNameAndAddress(
+                                      widget.phoneNumber),
+                            ));
+                      //   try {
+                      //     setState(() {
+                      //       hasError = false;
+                      //     });
+                      //     await _auth
+                      //         .signInWithCredential(
+                      //             PhoneAuthProvider.credential(
+                      //                 verificationId: verId,
+                      //                 smsCode: currentText))
+                      //         .then((value) async {
+                      //       if (value.user != null) {
+                      //         searchUser(widget.phoneNumber)
+                      //             .then((value) async {
+                      //           if (previousUser) {
+                      //             loginData =
+                      //                 await SharedPreferences.getInstance();
+                      //             loginData.setBool('login', false);
+                      //             loginData.setString('userId', userContact);
+                      //             Provider.of<ProductManager>(context,
+                      //                     listen: false)
+                      //                 .addUser(userName, userContact,
+                      //                     userAddress, customerTotalOrder);
+                      //             Navigator.pop(context);
+                      //             Navigator.pushReplacement(
+                      //                 context,
+                      //                 MaterialPageRoute(
+                      //                   builder: (context) => Products(),
+                      //                 ));
+                      //           } else {
+                      //             Navigator.pop(context);
+                      //             Navigator.pushReplacement(
+                      //                 context,
+                      //                 MaterialPageRoute(
+                      //                   builder: (context) =>
+                      //                       UserNameAndAddress(
+                      //                           widget.phoneNumber),
+                      //                 ));
+                      //           }
+                      //         });
+                      //       }
+                      //     });
+                      //   } catch (e) {
+                      //     print('Getting error, catch called');
+                      //     Navigator.pop(context);
+                      //     errorController!.add(ErrorAnimationType
+                      //         .shake); // Triggering error shake animation
+                      //     setState(() {
+                      //       hasError = true;
+                      //     });
+                      //   }
+                       },
                       onChanged: (value) {
                         print(value);
                         setState(() {
