@@ -124,6 +124,7 @@ class _ProductsState extends State<Products> with SingleTickerProviderStateMixin
                               textController.clear();
                             });
                           },
+
                         ),
                         SizedBox(
                           width: 10.0,
