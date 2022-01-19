@@ -33,7 +33,7 @@ class Vegetable extends StatelessWidget {
                   child: ReusableProductCard(
                     imageUrl: itemData.vegetableData[index].imageUrl,
                     productEngName: itemData.vegetableData[index].itemEngName,
-                    productUrduName: itemData.vegetableData[index].itemUrduName,
+                   // productUrduName: itemData.vegetableData[index].itemUrduName,
                     price: itemData.vegetableData[index].itemPrice,
                     shadowColor: (Colors.green[300])!,
                     buttonColor: (Colors.green[800])!,

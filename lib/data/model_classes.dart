@@ -1,7 +1,7 @@
 class Fruits {
   final String imageUrl;
   final String itemEngName;
-  final String itemUrduName;
+  //final String itemUrduName;
   final int itemPrice;
   final double rating;
   final int reviews;
@@ -9,7 +9,7 @@ class Fruits {
   Fruits(
       {required this.imageUrl,
       required this.itemEngName,
-      required this.itemUrduName,
+    //  required this.itemUrduName,
       required this.itemPrice,
       required this.reviews,
       required this.rating});
@@ -18,7 +18,7 @@ class Fruits {
 class Vegetable {
   final String imageUrl;
   final String itemEngName;
-  final String itemUrduName;
+  //final String itemUrduName;
   final int itemPrice;
   final double rating;
   final int reviews;
@@ -26,7 +26,7 @@ class Vegetable {
   Vegetable(
       {required this.imageUrl,
       required this.itemEngName,
-      required this.itemUrduName,
+    //  required this.itemUrduName,
       required this.itemPrice,
       required this.rating,
       required this.reviews});
@@ -35,7 +35,7 @@ class Vegetable {
 class VegWithChopping {
   final String imageUrl;
   final String itemEngName;
-  final String itemUrduName;
+ // final String itemUrduName;
   final int itemPrice;
   final double rating;
   final int reviews;
@@ -43,7 +43,7 @@ class VegWithChopping {
   VegWithChopping(
       {required this.imageUrl,
       required this.itemEngName,
-      required this.itemUrduName,
+   //   required this.itemUrduName,
       required this.itemPrice,
       required this.rating,
       required this.reviews});
@@ -52,7 +52,7 @@ class VegWithChopping {
 class Orders {
   final String imageUrl;
   final String itemEngName;
-  final String itemUrduName;
+  //final String itemUrduName;
   final int itemPrice;
   int userPrice;
   double itemQuantity;
@@ -60,7 +60,7 @@ class Orders {
   Orders(
       {required this.imageUrl,
       required this.itemEngName,
-      required this.itemUrduName,
+    //  required this.itemUrduName,
       required this.itemPrice,
       this.userPrice = 0,
       this.itemQuantity = 0.0});
@@ -82,7 +82,7 @@ class User {
 class SearchFromList {
   final String imageUrl;
   final String itemEngName;
-  final String itemUrduName;
+  //final String itemUrduName;
   final int itemPrice;
   final double rating;
   final int reviews;
@@ -90,7 +90,7 @@ class SearchFromList {
   SearchFromList(
       {required this.imageUrl,
       required this.itemEngName,
-      required this.itemUrduName,
+    //  required this.itemUrduName,
       required this.itemPrice,
       required this.rating,
       required this.reviews});

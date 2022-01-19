@@ -36,7 +36,7 @@ class Fruits extends StatelessWidget {
                           child: ReusableProductCard(
                             imageUrl: itemData.fruitData[index].imageUrl,
                             productEngName: itemData.fruitData[index].itemEngName,
-                            productUrduName: itemData.fruitData[index].itemUrduName,
+                            //productUrduName: itemData.fruitData[index].itemUrduName,
                             price: itemData.fruitData[index].itemPrice,
                             shadowColor: (Colors.red[300])!,
                             buttonColor: (Colors.red[800])!,

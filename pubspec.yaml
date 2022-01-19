@@ -45,6 +45,7 @@ dependencies:
   uuid: ^3.0.4
   loading_animations: ^2.2.0
   anim_search_bar: ^2.0.2
+  visibility_detector: ^0.2.2
 
 dev_dependencies:
   flutter_test:

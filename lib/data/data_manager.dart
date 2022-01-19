@@ -28,24 +28,24 @@ class ProductManager extends ChangeNotifier {
     if(index==0){
       print('Fruit');
       fruitData.forEach((element) {
-        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) ||element.itemUrduName.startsWith(searchKey.toLowerCase()) ){
-          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName, element.itemUrduName);
+        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) ||element.itemEngName.startsWith(searchKey.toLowerCase()) ){
+          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName,);
         }
       });
     }
     else if(index == 1){
       print('Vegetable');
       vegetableData.forEach((element) {
-        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) ||element.itemUrduName.startsWith(searchKey.toLowerCase()) ){
-          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName, element.itemUrduName);
+        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) ||element.itemEngName.startsWith(searchKey.toLowerCase()) ){
+          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName,);
         }
       });
     }
     else{
       print('Chopp Veg');
       vegWithChopping.forEach((element) {
-        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) || element.itemUrduName.startsWith(searchKey.toLowerCase())){
-          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName, element.itemUrduName);
+        if(element.itemEngName.toLowerCase().startsWith(searchKey.toLowerCase()) || element.itemEngName.startsWith(searchKey.toLowerCase())){
+          addSearchList(element.imageUrl, element.itemPrice, element.rating, element.reviews, element.itemEngName);
         }
       });
     }
@@ -53,8 +53,8 @@ class ProductManager extends ChangeNotifier {
 
   List<SearchFromList> searchProducts = [];
 
-  void addSearchList(String imageUrl, int price, double rating, int reviews, String itemEngName, String itemUrduName){
-    final findFromList = SearchFromList(imageUrl: imageUrl, itemEngName: itemEngName, itemUrduName: itemUrduName, itemPrice: price, rating: rating,reviews: reviews);
+  void addSearchList(String imageUrl, int price, double rating, int reviews, String itemEngName){
+    final findFromList = SearchFromList(imageUrl: imageUrl, itemEngName: itemEngName,  itemPrice: price, rating: rating,reviews: reviews);
     searchProducts.add(findFromList);
     notifyListeners();
   }
@@ -62,9 +62,9 @@ class ProductManager extends ChangeNotifier {
 //---------------------------------------------User will add product to cart--
   List<Orders> ordersData = [];
 
-  void addProduct(String imageUrl, String itemEngName, String itemUrduName, int price) {
+  void addProduct(String imageUrl, String itemEngName, int price) {
     final order =
-        Orders(imageUrl: imageUrl, itemEngName: itemEngName, itemUrduName: itemUrduName,itemPrice: price);
+        Orders(imageUrl: imageUrl, itemEngName: itemEngName,itemPrice: price);
     ordersData.add(order);
     notifyListeners();
   }

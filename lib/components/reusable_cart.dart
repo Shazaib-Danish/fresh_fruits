@@ -6,13 +6,13 @@ import 'package:provider/provider.dart';
 class ReusableCart extends StatefulWidget {
   final String imageUrl;
   final String engName;
-  final String urduName;
+  //final String urduName;
   final int price;
 
   const ReusableCart({
     required this.imageUrl,
     required this.engName,
-    required this.urduName,
+    //required this.urduName,
     required this.price,
   });
 
@@ -77,14 +77,14 @@ class _ReusableCartState extends State<ReusableCart> {
                                 SizedBox(
                                   height: 7.0,
                                 ),
-                                Text(
-                                  '${widget.urduName}',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 16,
-                                  ),
-                                ),
+                                // Text(
+                                //   '${widget.urduName}',
+                                //   style: TextStyle(
+                                //     color: Colors.black,
+                                //     fontWeight: FontWeight.w900,
+                                //     fontSize: 16,
+                                //   ),
+                                // ),
                                 SizedBox(
                                   height: 10.0,
                                 ),

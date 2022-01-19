@@ -33,7 +33,7 @@ class VegWithChopping extends StatelessWidget {
                   child: ReusableProductCard(
                     imageUrl: itemData.vegWithChopping[index].imageUrl,
                     productEngName: itemData.vegWithChopping[index].itemEngName,
-                    productUrduName: itemData.vegWithChopping[index].itemUrduName,
+                   // productUrduName: itemData.vegWithChopping[index].itemUrduName,
                     price: itemData.vegWithChopping[index].itemPrice,
                     shadowColor: (Colors.green[300])!,
                     buttonColor: (Colors.green[800])!,

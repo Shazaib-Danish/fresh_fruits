@@ -115,7 +115,7 @@ class _ProductsState extends State<Products> with SingleTickerProviderStateMixin
                       backgroundColor: Colors.white,
                       actions: [
                         AnimSearchBar(
-                          helpText: 'English or Urdu',
+                          helpText: 'Search',
                           width: MediaQuery.of(context).size.width * 0.7,
                           rtl: true,
                           textController: textController,

@@ -40,7 +40,7 @@ class SearchProducts extends StatelessWidget {
                     child: ReusableProductCard(
                       imageUrl: itemData.searchProducts[index].imageUrl,
                       productEngName: itemData.searchProducts[index].itemEngName,
-                      productUrduName: itemData.searchProducts[index].itemUrduName,
+                     // productUrduName: itemData.searchProducts[index].itemUrduName,
                       price: itemData.searchProducts[index].itemPrice,
                       shadowColor: shadowColor,
                       buttonColor: buttonColor,

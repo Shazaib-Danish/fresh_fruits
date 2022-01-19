@@ -7,7 +7,7 @@ import 'package:loading_indicator/loading_indicator.dart';
 class ReusableProductCard extends StatefulWidget {
   final String imageUrl;
   final String productEngName;
-  final String productUrduName;
+//  final String productUrduName;
   final int price;
   final double rating;
   final int reviews;
@@ -18,7 +18,7 @@ class ReusableProductCard extends StatefulWidget {
   const ReusableProductCard({
     required this.imageUrl,
     required this.productEngName,
-    required this.productUrduName,
+  //  required this.productUrduName,
     required this.price,
     required this.shadowColor,
     required this.buttonColor,
@@ -103,7 +103,7 @@ class _ReusableProductCardState extends State<ReusableProductCard> {
               ),
             )),
             Text(
-              '${widget.productEngName} | ${widget.productUrduName}',
+              '${widget.productEngName}',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w900,
@@ -144,8 +144,7 @@ class _ReusableProductCardState extends State<ReusableProductCard> {
                       });
                       if (isChecked != false) {
                         Provider.of<ProductManager>(context, listen: false)
-                            .addProduct(widget.imageUrl, widget.productEngName,
-                                widget.productUrduName, widget.price);
+                            .addProduct(widget.imageUrl, widget.productEngName,widget.price);
                       } else {
                         Provider.of<ProductManager>(context, listen: false)
                             .deleteProduct(widget.productEngName);

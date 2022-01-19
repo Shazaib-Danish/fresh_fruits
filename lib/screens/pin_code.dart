@@ -56,7 +56,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
       };
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
-    _verify();
+    beginPhoneAuth(context: context, phoneNumber: widget.phoneNumber);
   }
 
   @override
@@ -88,6 +88,36 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
     );
   }
 
+  Future beginPhoneAuth({
+    required BuildContext context,
+    required String phoneNumber,
+  }) async {
+    // if (kIsWeb) {
+    //   _webPhoneAuthConfirmationResult =
+    //   await FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
+    //   return;
+    // }
+    // If you'd like auto-verification, without the user having to enter the SMS
+    // code manually. Follow these instructions:
+    // * For Android: https://firebase.google.com/docs/auth/android/phone-auth?authuser=0#enable-app-verification (SafetyNet set up)
+    // * For iOS: https://firebase.google.com/docs/auth/ios/phone-auth?authuser=0#start-receiving-silent-notifications
+    // * Finally modify verificationCompleted below as instructed.
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      timeout: Duration(seconds: 0),
+      verificationCompleted: (phoneAuthCredential) async {
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+      },
+      verificationFailed: (exception) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${exception.message}')));
+      },
+      codeSent: (verificationId, _) {
+        verId = verificationId;
+      },
+      codeAutoRetrievalTimeout: (_) {},
+    );
+  }
+
   Future searchUser(String number) async {
     await FirebaseFirestore.instance
         .collection('Users')
@@ -108,38 +138,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
 
   late String verId;
 
-  _verify() async {
-    final PhoneVerificationCompleted verificationCompleted =
-        (AuthCredential phoneAuthCredential) async {
-      await _auth.signInWithCredential(phoneAuthCredential);
-    };
-//
-    final PhoneVerificationFailed verificationFailed =
-        (FirebaseAuthException authException) {
-      print('Auth Exception is ${authException.message}');
-    };
-//
-    final PhoneCodeSent codeSent = (String verificationId) {
-      print('verification id is $verificationId');
-      verId = verificationId;
-    } as PhoneCodeSent;
-//
-    final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-        (String verificationId) {
-      verId = verificationId;
-    };
-    try {
-      await _auth.verifyPhoneNumber(
-          phoneNumber: '${widget.phoneNumber}',
-          timeout: const Duration(seconds: 60),
-          verificationCompleted: verificationCompleted,
-          verificationFailed: verificationFailed,
-          codeSent: codeSent,
-          codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
-    } catch (e) {
-      print(e);
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -222,64 +221,64 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       keyboardType: TextInputType.number,
                       onCompleted: (v) async {
                         CircularProgress().circularProgress(context);
-                        Navigator.pop(context);
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  UserNameAndAddress(
-                                      widget.phoneNumber),
-                            ));
-                      //   try {
-                      //     setState(() {
-                      //       hasError = false;
-                      //     });
-                      //     await _auth
-                      //         .signInWithCredential(
-                      //             PhoneAuthProvider.credential(
-                      //                 verificationId: verId,
-                      //                 smsCode: currentText))
-                      //         .then((value) async {
-                      //       if (value.user != null) {
-                      //         searchUser(widget.phoneNumber)
-                      //             .then((value) async {
-                      //           if (previousUser) {
-                      //             loginData =
-                      //                 await SharedPreferences.getInstance();
-                      //             loginData.setBool('login', false);
-                      //             loginData.setString('userId', userContact);
-                      //             Provider.of<ProductManager>(context,
-                      //                     listen: false)
-                      //                 .addUser(userName, userContact,
-                      //                     userAddress, customerTotalOrder);
-                      //             Navigator.pop(context);
-                      //             Navigator.pushReplacement(
-                      //                 context,
-                      //                 MaterialPageRoute(
-                      //                   builder: (context) => Products(),
-                      //                 ));
-                      //           } else {
-                      //             Navigator.pop(context);
-                      //             Navigator.pushReplacement(
-                      //                 context,
-                      //                 MaterialPageRoute(
-                      //                   builder: (context) =>
-                      //                       UserNameAndAddress(
-                      //                           widget.phoneNumber),
-                      //                 ));
-                      //           }
-                      //         });
-                      //       }
-                      //     });
-                      //   } catch (e) {
-                      //     print('Getting error, catch called');
-                      //     Navigator.pop(context);
-                      //     errorController!.add(ErrorAnimationType
-                      //         .shake); // Triggering error shake animation
-                      //     setState(() {
-                      //       hasError = true;
-                      //     });
-                      //   }
+                        // Navigator.pop(context);
+                        //Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           UserNameAndAddress(
+                        //               widget.phoneNumber),
+                        //     ));
+                        try {
+                          setState(() {
+                            hasError = false;
+                          });
+                          await _auth
+                              .signInWithCredential(
+                                  PhoneAuthProvider.credential(
+                                      verificationId: verId,
+                                      smsCode: currentText))
+                              .then((value) async {
+                            if (value.user != null) {
+                              searchUser(widget.phoneNumber)
+                                  .then((value) async {
+                                if (previousUser) {
+                                  loginData =
+                                      await SharedPreferences.getInstance();
+                                  loginData.setBool('login', false);
+                                  loginData.setString('userId', userContact);
+                                  Provider.of<ProductManager>(context,
+                                          listen: false)
+                                      .addUser(userName, userContact,
+                                          userAddress, customerTotalOrder);
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Products(),
+                                      ));
+                                } else {
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UserNameAndAddress(
+                                                widget.phoneNumber),
+                                      ));
+                                }
+                              });
+                            }
+                          });
+                        } catch (e) {
+                          print('Getting error, catch called');
+                          Navigator.pop(context);
+                          errorController!.add(ErrorAnimationType
+                              .shake); // Triggering error shake animation
+                          setState(() {
+                            hasError = true;
+                          });
+                        }
                        },
                       onChanged: (value) {
                         print(value);

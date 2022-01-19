@@ -95,8 +95,8 @@ class UserCart extends StatelessWidget {
                                             .ordersData[index].imageUrl,
                                         engName: orderItem
                                             .ordersData[index].itemEngName,
-                                        urduName: orderItem
-                                            .ordersData[index].itemUrduName,
+                                        // urduName: orderItem
+                                        //     .ordersData[index].itemUrduName,
                                         price: orderItem
                                             .ordersData[index].itemPrice,
                                       );
@@ -189,7 +189,7 @@ class UserCart extends StatelessWidget {
                                 List<dynamic> order = [];
                                 for (int i = 0; i < ordersItems; i++) {
                                   String name =
-                                      '${items[i].itemEngName} | ${items[i].itemUrduName} :'
+                                      '${items[i].itemEngName} :'
                                       ' ${items[i].itemQuantity.toStringAsFixed(2)} : Rs.${items[i].userPrice}';
                                   order.add(name);
                                 }
@@ -269,9 +269,9 @@ class UserCart extends StatelessWidget {
                                         children: [
                                           Row(
                                             children: [
-                                              Expanded(
-                                                  child: Text(
-                                                      '${items[index].itemEngName} | ${items[index].itemUrduName}')),
+                                              // Expanded(
+                                              //     child: Text(
+                                              //         '${items[index].itemEngName} | ${items[index].itemUrduName}')),
                                               Expanded(
                                                 child: Text(
                                                     '  ${items[index].itemQuantity.toStringAsFixed(2)}/Kg '),

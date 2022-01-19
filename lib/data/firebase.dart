@@ -18,7 +18,7 @@ void getFruit(BuildContext context) async {
     _fruits.add(Fruits(
       imageUrl: product['productImageUrl'],
       itemEngName: product['productEngName'] ,
-      itemUrduName: product['productUrduName'],
+     // itemUrduName: product['productUrduName'],
       itemPrice: int.parse(product['productPrice']),
       rating: double.parse(product['rating'].toString()),
       reviews: int.parse(product['reviews'].toString()),
@@ -36,7 +36,7 @@ void getVegetable(BuildContext context) async {
     _vegetable.add(Vegetable(
       imageUrl: product['productImageUrl'],
       itemEngName: product['productEngName'] ,
-      itemUrduName: product['productUrduName'],
+     // itemUrduName: product['productUrduName'],
       itemPrice: int.parse(product['productPrice']),
       rating: double.parse(product['rating'].toString()),
       reviews: int.parse(product['reviews'].toString()),
@@ -52,7 +52,7 @@ void getVegWithChopping(BuildContext context) async {
     _vegWithChopping.add(VegWithChopping(
       imageUrl: product['productImageUrl'],
       itemEngName: product['productEngName'] ,
-      itemUrduName: product['productUrduName'],
+     // itemUrduName: product['productUrduName'],
       itemPrice: int.parse(product['productPrice']),
       rating: double.parse(product['rating'].toString()),
       reviews: int.parse(product['reviews'].toString()),
@@ -89,7 +89,7 @@ Future postOrder(BuildContext context) async {
 
 //----------------------------------Converting Order items to Strings--------
   for (int i = 0; i < ordersItems; i++) {
-    String name = '${items[i].itemEngName} | ${items[i].itemUrduName}---- '
+    String name = '${items[i].itemEngName} ---- '
         'Kg. ${items[i].itemQuantity.toStringAsFixed(2)} ---- Rs. ${items[i].userPrice}';
     order.add(name);
   }
